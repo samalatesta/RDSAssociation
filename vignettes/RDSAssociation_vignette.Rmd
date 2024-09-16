@@ -23,7 +23,7 @@ library(dplyr)
 ### SPRTCA Example 
 
 #### Data description
-```{r, echo=F}
+```{r, echo=T}
 head(RDSdata)
 
 str(RDSdata)
@@ -31,7 +31,7 @@ str(RDSdata)
 
 
 #### Plot RDS data 
-```{r plot tree, fig.width=14}
+```{r plot tree, fig.width=12}
 #prep data
 edges <- RDSdata %>% dplyr::select(rec.id, id) %>% dplyr::filter(rec.id!=0)
 edges2 <- as.matrix(edges)
@@ -42,33 +42,40 @@ igraph::V(g1)$age <- RDSdata$age
 
 
 #plot tree
-ggraph::ggraph(g1,layout=igraph::layout.reingold.tilford(g1) ) + 
+ggraph::ggraph(g1,layout=igraph::layout.reingold.tilford(g1, root=c( "1","3","4","5", "2"), rootlevel=c(10,1,10,1,1) )) + 
 #add edges
 ggraph::geom_edge_link(edge_width = .2) +
 #add vertices
 ggraph::geom_node_point(size=2, ggplot2::aes(color=disease)) +  ggplot2::theme_void() +  ggplot2::scale_shape_manual(name = "disease",  values = c(22, 21))+  ggplot2::theme( plot.background =  ggplot2::element_rect(fill="white"), legend.position = "top") +  ggplot2::scale_color_manual(name="", values=c( "red", "black")) 
 ```
 
-#### SPRTCA 
-```{r, eval=F}
+#### SPRTCA Example
+```{r, eval=T}
+#test for association between disease and age in RDSdata
 
+#Inputs
+#net: RDS data set 
+#var1: variable 1 (numeric or character)
+#var2: variable 2 (numeric)
+#iter: number of randomized test statistics to use for generating a null distribution. Deafult is 5000 which is the recommended minimum in practice. Here we use 1000 to speed up examples. 
+
+sprtca(net=RDSdata, var1="age", var2="disease", iter=1000)
 ```
 
 
 #### Compare SPRTCA to parametric test
 ```{r run tests, eval=T}
-
 #association between age and disease
 #ttest
 t.test(RDSdata$age[RDSdata$disease=="Disease"], RDSdata$age[RDSdata$disease=="No Disease"], var.equal = T)
 #SPRTCA
-sprtca(1000, "disease", "age", RDSdata)
+sprtca(RDSdata, var1="age", var2="disease", 1000)
 
 #association between sex and age
 #ttest
 t.test(RDSdata$age[RDSdata$sex == "Male"], RDSdata$age[RDSdata$sex=="Female"], var.equal = T)
 #SPRTCA
-sprtca(1000, "sex", "age", RDSdata)
+sprtca(RDSdata, var1="age", var2="sex", 1000)
 
 ```
 
