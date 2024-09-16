@@ -1,0 +1,78 @@
+---
+title: "RDSAssociation_vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RDSAssociation_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+knitr::opts_chunk$set(echo = T)
+library(RDSAssociation)
+library(dplyr)
+```
+
+### SPRTCA Example 
+
+#### Data description
+```{r, echo=F}
+head(RDSdata)
+
+str(RDSdata)
+```
+
+
+#### Plot RDS data 
+```{r plot tree, fig.width=14}
+#prep data
+edges <- RDSdata %>% dplyr::select(rec.id, id) %>% dplyr::filter(rec.id!=0)
+edges2 <- as.matrix(edges)
+#set up graph object with tree as layout
+g1 <- igraph::graph_from_edgelist(edges2, directed = T)
+igraph::V(g1)$disease <- as.character(RDSdata$disease)
+igraph::V(g1)$age <- RDSdata$age
+
+
+#plot tree
+ggraph::ggraph(g1,layout=igraph::layout.reingold.tilford(g1) ) + 
+#add edges
+ggraph::geom_edge_link(edge_width = .2) +
+#add vertices
+ggraph::geom_node_point(size=2, ggplot2::aes(color=disease)) +  ggplot2::theme_void() +  ggplot2::scale_shape_manual(name = "disease",  values = c(22, 21))+  ggplot2::theme( plot.background =  ggplot2::element_rect(fill="white"), legend.position = "top") +  ggplot2::scale_color_manual(name="", values=c( "red", "black")) 
+```
+
+#### SPRTCA 
+```{r, eval=F}
+
+```
+
+
+#### Compare SPRTCA to parametric test
+```{r run tests, eval=T}
+
+#association between age and disease
+#ttest
+t.test(RDSdata$age[RDSdata$disease=="Disease"], RDSdata$age[RDSdata$disease=="No Disease"], var.equal = T)
+#SPRTCA
+sprtca(1000, "disease", "age", RDSdata)
+
+#association between sex and age
+#ttest
+t.test(RDSdata$age[RDSdata$sex == "Male"], RDSdata$age[RDSdata$sex=="Female"], var.equal = T)
+#SPRTCA
+sprtca(1000, "sex", "age", RDSdata)
+
+```
+
+#### Session Info
+```{r session info, echo=FALSE}
+sessionInfo()
+```

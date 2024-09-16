@@ -40,15 +40,6 @@ accessed in your local R environment (note: this may take a while). The
 devtools::install_github("samalatesta/RDSAssociation")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(RDSAssociation)
-## basic example code
-```
-
 ## Usage
 
 To use `RDSAssociation` in your R scripts or projects, load the package
@@ -74,7 +65,7 @@ within R. You can access documentation using the ? operator followed by
 the function name. For example:
 
 ``` r
-#?plot_states
+?sprtca
 ```
 
 ## License

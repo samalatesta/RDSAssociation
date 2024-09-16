@@ -1,0 +1,17 @@
+#' RDSdata
+#'
+#' A simulated RDS data set.
+#'
+#' @format
+#' A data frame with 500 rows and 8 columns. Each observation represented one individual in the RDS sample.
+#' \describe{
+#'   \item{id}{Unique identifier for each observation}
+#'   \item{rec.id}{Recruiter id}
+#'   \item{degree}{Network size}
+#'   \item{wave}{Recruitment wave}
+#'   \item{seed.id}{Seed}
+#'   \item{sex}{Simulated dichotomous variable for assigned sex}
+#'   \item{disease}{Simulated dichotomous variable for disease status}
+#'   \item{age}{Simulated continuous variable for age}
+#' }
+"RDSdata"

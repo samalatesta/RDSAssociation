@@ -32,16 +32,6 @@ You can install the development version of RDSAssociation from [GitHub](https://
 devtools::install_github("samalatesta/RDSAssociation")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-library(RDSAssociation)
-## basic example code
-```
-
-
 ## Usage
 
 To use `RDSAssociation` in your R scripts or projects, load the package using:
@@ -49,7 +39,9 @@ To use `RDSAssociation` in your R scripts or projects, load the package using:
 ```R
 library(RDSAssociation)
 ```
+
 For detailed information on how to use each function, please refer to the package documentation and vignette. The vignette can be viewed locally after package installation or the knitted html is also included in the `\vignettes` directory. 
+
 ```R
 vignette(package="RDSAssociation")
 ```
@@ -59,7 +51,7 @@ vignette(package="RDSAssociation")
 Comprehensive documentation for `RDSAssociation` functions is available within R. You can access documentation using the ? operator followed by the function name. For example:
 
 ```R
-#?plot_states
+?sprtca
 ```
 
 
