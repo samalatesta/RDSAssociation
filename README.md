@@ -31,9 +31,8 @@ using respondent-driven sampling” by Malatesta et al. 
 You can install the development version of RDSAssociation from
 [GitHub](https://github.com/). We recommend setting the option
 `build_vignettes=T` when installing so the package vignette can be
-accessed in your local R environment (note: this may take a while). The
-`devtools` package must be installed prior to installing
-`RDSAssociation`.
+accessed in your local R environment. The `devtools` package must be
+installed prior to installing `RDSAssociation`.
 
 ``` r
 # install.packages("devtools")
