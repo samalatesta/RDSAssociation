@@ -22,9 +22,8 @@ accounts for homophily whereas classical statistical methods (ie.
 t-test, Pearson correlation test) assume independence between
 observations.
 
-For a detailed discussion of the methods please see the manuscript
-“Inferring bivariate associations with continuous data from studies
-using respondent-driven sampling” by Malatesta et al. 
+For a detailed discussion of the methods please see the paper:     
+Malatesta S, Jacobson KR, Carney T, Kolaczyk ED, Gile KJ, White LF. Inferring bivariate association with continuous data from a respondent-driven sample. Journal of the Royal Statistical Society Series C: Applied Statistics. 2024:qlae061.<https://doi.org/10.1093/jrsssc/qlae061>
 
 ## Installation
 
